@@ -1,7 +1,7 @@
 # Jenkins CI/CD Pipeline Automation
 
-**Date:** February 13, 2026
-**Topic:** Continuous Integration & Deployment (CI/CD)
+**Date:** February 13, 2026 <br>
+**Topic:** Continuous Integration & Deployment (CI/CD) <br>
 **Project:** Node.js + Jenkins (Docker) + Groovy
 
 ## Project Overview
@@ -11,9 +11,9 @@ Unlike the previous project which used GitHub Actions (a cloud-hosted service), 
 
 ## 1. What? (The Concept)
 
-**What I Built**
-I built a **Declarative Jenkins Pipeline**.
-This is an automated workflow managed by a Jenkins server running in a local Docker container. The pipeline is defined in a text file (`Jenkinsfile`) which is committed alongside the application code.
+**What I Built:** <br>
+I built a **Declarative Jenkins Pipeline**. <br>
+This is an automated workflow managed by a Jenkins server running in a local Docker container. <br> The pipeline is defined in a text file (`Jenkinsfile`) which is committed alongside the application code.
 
 **What It Does**
 1.  **Polls:** Checks the GitHub repository for changes every 2 minutes.
@@ -23,14 +23,14 @@ This is an automated workflow managed by a Jenkins server running in a local Doc
 
 ## 2. Why? (The Purpose)
 
-**Why Jenkins?**
-While tools like GitHub Actions are convenient, Jenkins remains the most widely used tool in enterprise environments for specific reasons:
+**Why Jenkins?**<br>
+While tools like GitHub Actions are convenient, <br> Jenkins remains the most widely used tool in enterprise environments for specific reasons:
 * **Data Sovereignty:** The code never leaves the internal network (if hosted on-premise).
 * **Customization:** It has thousands of plugins to integrate with legacy systems.
 * **Cost:** It is open-source and free (no per-minute billing like SaaS tools).
 
-**The Problem It Solves**
-Without this pipeline, deploying updates requires a developer to manually SSH into servers, pull code, and restart services. This is slow and risky. This project automates that entire lifecycle, ensuring that if the code works on my machine, it will work on the server.
+**The Problem It Solves** <br>
+Without this pipeline, deploying updates requires a developer to manually SSH into servers, pull code, and restart services.<br> This is slow and risky.<br> This project automates that entire lifecycle, ensuring that if the code works on my machine, it will work on the server.
 
 ## Tech Stack
 | Component | Technology | Description |
@@ -75,13 +75,13 @@ graph LR
 
 The pipeline is defined in the Jenkinsfile using Declarative Syntax:
 
-Agent Any: Instructions to run this pipeline on any available executor (runner).
+**Agent Any:** Instructions to run this pipeline on any available executor (runner).
 
-Stage 1: Build: Simulates the installation of dependencies (npm install).
+**Stage 1:** Build: Simulates the installation of dependencies (npm install).
 
-Stage 2: Test: Runs unit tests to ensure the application logic is sound.
+**Stage 2:** Test: Runs unit tests to ensure the application logic is sound.
 
-Stage 3: Deploy: Simulates the final push of the artifact to a server or Docker Registry.
+**Stage 3:** Deploy: Simulates the final push of the artifact to a server or Docker Registry.
 
 </details>
 
@@ -116,6 +116,7 @@ docker run -p 8080:8080 -p 50000:50000 --restart=on-failure --name jenkins-serve
 ## 4. Alternatives (Comparison)
 |Tool|Type|Pros|Cons|
 |-----|------|------|-----|
+|[GitHub Actions](https://github.com/Indra1806/nodejs-demo-app)|	SaaS	|Zero setup, integrated with code.|	Limited runtime, cost at scale.|
 |GitLab CI|Integrated|"Excellent visualization, built-in."|Tightly coupled with GitLab.|
 |Bamboo|Enterprise|Great Jira/Bitbucket integration|Expensive license costs.|
 
@@ -140,17 +141,19 @@ To transition this project from "Demo" to "Production Grade":
 - Git Push: git push origin main
 
 ## FAQ / Interview Prep
-1. What is Jenkins?
+**1. What is Jenkins?** <br>
 Jenkins is an open-source automation server. It facilitates CI/CD by automating the building, testing, and deploying of code. It is Java-based and runs on almost any OS.
 
-2. What is a Jenkinsfile?
+**2. What is a Jenkinsfile?** <br>
 It is a text file that treats the deployment pipeline as code ("Pipeline as Code"). It is stored in the repository, allowing version control and audit trails for the deployment process itself.
 
-3. Declarative vs Scripted Pipelines?
+**3. Declarative vs Scripted Pipelines?** <br>
+    - Declarative: (Used here) A stricter, predefined structure. It is easier to read and write. It focuses on what should happen.
 
-Declarative: (Used here) A stricter, predefined structure. It is easier to read and write. It focuses on what should happen.
+    - Scripted: A general-purpose Groovy script. It is more powerful but harder to maintain. It focuses on how logic is executed.
 
-Scripted: A general-purpose Groovy script. It is more powerful but harder to maintain. It focuses on how logic is executed.
+**4. Why use Poll SCM instead of Webhooks?** <br>
+In this local demo, my Jenkins server is behind a firewall (localhost) and cannot receive traffic from GitHub. <br> Polling allows Jenkins to "reach out" and check for changes periodically. In production, Webhooks are preferred for real-time performance.
 
-4. Why use Poll SCM instead of Webhooks?
-In this local demo, my Jenkins server is behind a firewall (localhost) and cannot receive traffic from GitHub. Polling allows Jenkins to "reach out" and check for changes periodically. In production, Webhooks are preferred for real-time performance.
+
+## OutPut (Screenshots)
