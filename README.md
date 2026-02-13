@@ -156,4 +156,4 @@ It is a text file that treats the deployment pipeline as code ("Pipeline as Code
 In this local demo, my Jenkins server is behind a firewall (localhost) and cannot receive traffic from GitHub. <br> Polling allows Jenkins to "reach out" and check for changes periodically. In production, Webhooks are preferred for real-time performance.
 
 
-## OutPut (Screenshots)
+## OutPut [Screenshots](https://github.com/Indra1806/jenkins-demo-app)
